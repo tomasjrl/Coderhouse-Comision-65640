@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import CartWidget from "../CartWidget/CartWidget.js";
 import "./NavBar.css";
 
@@ -32,21 +33,21 @@ function NavBar() {
       {isMobile ? (
         <>
           <button className="hamburger" onClick={toggleMenu}>
-            ☰
+ 
           </button>
           <ul className={`navbar-links-mobile ${isMenuOpen ? 'open' : ''}`}>
-            <li><a href="/">Home</a></li>
-            <li><a href="/products">Catálogo</a></li>
-            <li><a href="/about">Nosotros</a></li>
-            <li><a href="/contact">Contacto</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/category/remeras">Catálogo</Link></li>
+            <li><Link to="/about">Nosotros</Link></li>
+            <li><Link to="/contact">Contacto</Link></li>
           </ul>
         </>
       ) : (
         <ul className="navbar-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/products">Catálogo</a></li>
-          <li><a href="/about">Nosotros</a></li>
-          <li><a href="/contact">Contacto</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/category/remeras">Catálogo</Link></li>
+          <li><Link to="/about">Nosotros</Link></li>
+          <li><Link to="/contact">Contacto</Link></li>
         </ul>
       )}
       <CartWidget />
