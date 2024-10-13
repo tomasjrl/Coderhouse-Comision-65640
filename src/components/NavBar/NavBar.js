@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CartWidget from "../CartWidget/CartWidget.js";
+import CartWidget from "./CartWidget/CartWidget.js";
 import "./NavBar.css";
 
 function NavBar() {
