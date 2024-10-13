@@ -27,29 +27,34 @@ function NavBar() {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <img src="/logo.png" alt="Store Logo" />
+      <h1>E-Premier</h1>
       </div>
       {isMobile ? (
         <>
+        <CartWidget />
           <button className="hamburger" onClick={toggleMenu}>
             ☰
           </button>
           <ul className={`navbar-links-mobile ${isMenuOpen ? 'open' : ''}`}>
-            <li><a href="/">Home</a></li>
-            <li><a href="/products">Catálogo</a></li>
-            <li><a href="/about">Nosotros</a></li>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/vestidos">Mujer</a></li>
+            <li><a href="/trajes">Hombre</a></li>
+            <li><a href="/about">Sobre</a></li>
             <li><a href="/contact">Contacto</a></li>
           </ul>
         </>
       ) : (
+        <>
         <ul className="navbar-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/products">Catálogo</a></li>
-          <li><a href="/about">Nosotros</a></li>
-          <li><a href="/contact">Contacto</a></li>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/vestidos">Mujer</a></li>
+            <li><a href="/trajes">Hombre</a></li>
+            <li><a href="/about">Sobre</a></li>
+            <li><a href="/contact">Contacto</a></li>
         </ul>
+        <CartWidget />
+        </>
       )}
-      <CartWidget />
     </nav>
   );
 }

@@ -4,22 +4,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background-color: #f0eff6;
-  border-radius: 18px;
+  padding: 0 16px;
+  background-color: #0891b2;
+  /* border-radius: 18px; */
 }
 
-.navbar-logo img {
-  height: 80px;
+h1 {
+  font-size: 22px;
 }
 
-.hamburger {
-  font-size: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: color 0.2s ease-in-out; /* Transición para el color */
-}
+
 
 .navbar-links {
   display: flex;
@@ -35,12 +29,11 @@
   display: flex; /* Mantener flex para que funcione con max-height */
   flex-direction: column; 
   position: absolute; 
-  top: 120px; 
+  top: 40px; 
+  right: 0px;
+  width: 100%;
   list-style-type: none;
-  background-color: #f0eff6;
-  padding-left: 0px;
-  padding: 10px;
-  border-radius: 18px;
+  background-color: #0891b2;
   max-height: 0; 
   overflow: hidden; 
   visibility: hidden;
@@ -59,17 +52,27 @@
   text-align: center;
 }
 
+.hamburger,
+.navbar-logo,
 .navbar-links a,
 .navbar-links-mobile a {
   text-decoration: none;
-  color: #333;
-  font-size: 18px;
+  color: #ffffff;
+  font-size: 16px;
   letter-spacing: 1px;
+  transition: color 0.2s ease-in-out; /* Transición para el color */
+}
+
+.hamburger {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
   transition: color 0.2s ease-in-out; /* Transición para el color */
 }
 
 .hamburger:hover,
 .navbar-links a:hover,
 .navbar-links-mobile a:hover {
-  color: #ff4d4d; /* Color al pasar el ratón */
+  color: #b3dbfe; /* Color al pasar el ratón */
 }

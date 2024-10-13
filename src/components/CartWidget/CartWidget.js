@@ -5,7 +5,7 @@ import './CartWidget.css';
 function CartWidget() {
   return (
     <div className="cart-widget">
-      <FaShoppingCart size="22px" /> 
+      <FaShoppingCart size="22px" color="#ffffff" /> 
       <span className="cart-items">0</span>
     </div>
   );
