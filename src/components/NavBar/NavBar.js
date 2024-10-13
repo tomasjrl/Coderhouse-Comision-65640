@@ -37,8 +37,8 @@ function NavBar() {
           </button>
           <ul className={`navbar-links-mobile ${isMenuOpen ? 'open' : ''}`}>
             <li><a href="/">Inicio</a></li>
-            <li><a href="/vestidos">Mujer</a></li>
-            <li><a href="/trajes">Hombre</a></li>
+            <li><a href="/vestidos">Vestidos</a></li>
+            <li><a href="/trajes">Trajes</a></li>
             <li><a href="/about">Sobre</a></li>
             <li><a href="/contact">Contacto</a></li>
           </ul>
@@ -47,9 +47,9 @@ function NavBar() {
         <>
         <ul className="navbar-links">
             <li><a href="/">Inicio</a></li>
-            <li><a href="/vestidos">Mujer</a></li>
-            <li><a href="/trajes">Hombre</a></li>
             <li><a href="/about">Sobre</a></li>
+            <li><a href="/vestidos">Vestidos</a></li>
+            <li><a href="/trajes">Trajes</a></li>
             <li><a href="/contact">Contacto</a></li>
         </ul>
         <CartWidget />
