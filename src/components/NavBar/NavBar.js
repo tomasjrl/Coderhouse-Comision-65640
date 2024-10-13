@@ -37,16 +37,16 @@ function NavBar() {
           </button>
           <ul className={`navbar-links-mobile ${isMenuOpen ? 'open' : ''}`}>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/category/remeras">Catálogo</Link></li>
-            <li><Link to="/about">Nosotros</Link></li>
+            <li><Link to="/category/remeras">Remeras</Link></li>
+            <li><Link to="/category/pantalones">Pantalones</Link></li>
             <li><Link to="/contact">Contacto</Link></li>
           </ul>
         </>
       ) : (
         <ul className="navbar-links">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/category/remeras">Catálogo</Link></li>
-          <li><Link to="/about">Nosotros</Link></li>
+          <li><Link to="/category/remeras">Remeras</Link></li>
+          <li><Link to="/category/pantalones">Pantalones</Link></li>
           <li><Link to="/contact">Contacto</Link></li>
         </ul>
       )}
