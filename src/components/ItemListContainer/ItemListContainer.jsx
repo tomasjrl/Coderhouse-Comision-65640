@@ -44,7 +44,7 @@ const ItemListContainer = () => {
           category: "vestidos",
           price: 24.99,
           image:
-            "  https://images.unsplash.com/photo-1678713616279-70dc854f387a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI3MXx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1678713616279-70dc854f387a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI3MXx8fGVufDB8fHx8fA%3D%3D",
         },
         {
           id: "5",
@@ -80,9 +80,10 @@ const ItemListContainer = () => {
         },
       ];
 
+      // Filtrar productos por categoría si existe
       const filteredProducts = categoryId
         ? allProducts.filter((product) => product.category === categoryId)
-        : allProducts;
+        : allProducts; // Si no hay categoryId, mostrar todos los productos
 
       setProducts(filteredProducts);
       setLoading(false);
@@ -102,7 +103,17 @@ const ItemListContainer = () => {
           ? `${categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}`
           : "Catálogo"}
       </h2>
-      <ItemList products={products} />
+      
+      {/* Verificar si hay productos disponibles */}
+      {products.length > 0 ? (
+        <ItemList products={products} />
+      ) : (
+        <div className="text-center py-8">
+          <h3 className="text-xl font-bold">Categoría no encontrada</h3>
+          <p className="text-lg">Lo sentimos, no hay productos en esta categoría.</p>
+          <p className="text-sm text-gray-600">Por favor, verifica la URL o vuelve a la página principal.</p>
+        </div>
+      )}
     </div>
   );
 };
