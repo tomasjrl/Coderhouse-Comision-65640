@@ -1,5 +1,9 @@
 import React from 'react';
 import { useCart } from '../NavBar/CartWidget/CartWidget';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 const Cart = () => {
   const { cartItems, removeFromCart, clearCart } = useCart();
@@ -19,8 +23,15 @@ const Cart = () => {
 
   // Manejar la compra
   const handleCheckout = () => {
-    alert("Compra realizada con éxito!");
-    clearCart(); // Limpiar el carrito después de la compra.
+    MySwal.fire({
+      title: 'Compra realizada con éxito!',
+      text: 'Gracias por tu compra.',
+      icon: 'success',
+      confirmButtonColor: '#0069d9',
+      confirmButtonText: 'Aceptar'
+    }).then(() => {
+      clearCart(); // Limpiar el carrito después de la compra.
+    });
   };
 
   return (
