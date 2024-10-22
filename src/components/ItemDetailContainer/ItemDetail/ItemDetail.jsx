@@ -1,4 +1,3 @@
-// ItemDetail.jsx
 import React, { useContext } from "react";
 import ItemCount from "./ItemCount";
 import { CartContext } from "../../NavBar/CartWidget/CartWidget";
@@ -17,7 +16,7 @@ const ItemDetail = ({ product }) => {
 
   const handleAddToCart = (count) => {
     console.log(`Added ${count} ${product.name}(s) to cart`);
-    addToCart(product, count); // Cambiado para pasar el producto y la cantidad
+    addToCart(count);
   };
 
   return (
