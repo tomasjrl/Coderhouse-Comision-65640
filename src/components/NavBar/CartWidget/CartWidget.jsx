@@ -1,17 +1,32 @@
+// CartWidget.jsx
 import React, { createContext, useContext, useState } from 'react';
 
 // Create a context for the cart
 export const CartContext = createContext(undefined);
 
 export const CartProvider = ({ children }) => {
-  const [cartCount, setCartCount] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = (quantity) => {
-    setCartCount(prevCount => prevCount + quantity);
+  const addToCart = (item, quantity) => {
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(cartItem => cartItem.id === item.id);
+      if (existingItem) {
+        return prevItems.map(cartItem =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + quantity }
+            : cartItem
+        );
+      } else {
+        return [...prevItems, { ...item, quantity }];
+      }
+    });
   };
 
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
   return (
-    <CartContext.Provider value={{ cartCount, addToCart }}>
+    <CartContext.Provider value={{ cartItems, cartCount, addToCart, totalAmount }}>
       {children}
     </CartContext.Provider>
   );
