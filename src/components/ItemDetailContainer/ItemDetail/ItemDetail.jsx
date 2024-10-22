@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ItemCount from "./ItemCount";
 import { CartContext } from "../../NavBar/CartWidget/CartWidget";
 
@@ -12,9 +12,16 @@ const useCart = () => {
 
 const ItemDetail = ({ product }) => {
   const { addToCart } = useCart();
+  const [isCountVisible, setIsCountVisible] = useState(true); // Estado para controlar la visibilidad
+  const [selectedCount, setSelectedCount] = useState(1); // Estado para contar la cantidad seleccionada
 
   const handleAddToCart = (count) => {
     addToCart(product, count);
+    setIsCountVisible(false); // Ocultar ItemCount después de agregar al carrito
+  };
+
+  const handleCountChange = (count) => {
+    setSelectedCount(count); // Actualizar la cantidad seleccionada
   };
 
   return (
@@ -35,8 +42,18 @@ const ItemDetail = ({ product }) => {
             {product.name}
           </h2>
           <p className="mt-2 text-gray-500">${product.price.toFixed(2)}</p>
+          
+          {/* Mostrar el stock disponible */}
+          <p className="mt-2 text-gray-700">Stock disponible: {product.stock}</p>
+
           <div className="mt-4">
-            <ItemCount stock={10} initial={1} onAdd={handleAddToCart} />
+            <ItemCount 
+              stock={product.stock} // Usar el stock real del producto
+              initial={1} 
+              onAdd={handleAddToCart} 
+              visible={isCountVisible} // Pasar la visibilidad al componente
+              onCountChange={handleCountChange} // Pasar la función para actualizar la cantidad seleccionada
+            />
           </div>
         </div>
       </div>
