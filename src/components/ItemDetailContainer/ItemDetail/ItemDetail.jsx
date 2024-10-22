@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import ItemCount from "./ItemCount";
 import { CartContext } from "../../NavBar/CartWidget/CartWidget";
 
-// Custom hook to use the CartContext
 const useCart = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
