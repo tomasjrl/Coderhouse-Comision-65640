@@ -22,11 +22,18 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-  const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const removeFromCart = (itemId) => {
+    setCartItems(prevItems => prevItems.filter(cartItem => cartItem.id !== itemId));
+  };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  
   return (
-    <CartContext.Provider value={{ cartItems, cartCount, addToCart, totalAmount }}>
+    <CartContext.Provider value={{ cartItems, cartCount, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

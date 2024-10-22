@@ -2,7 +2,26 @@ import React from 'react';
 import { useCart } from '../NavBar/CartWidget/CartWidget';
 
 const Cart = () => {
-  const { cartItems, totalAmount } = useCart();
+  const { cartItems, removeFromCart, clearCart } = useCart();
+
+  // Calcular el total
+  const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  // Manejar la eliminación de un producto
+  const handleRemove = (id) => {
+    removeFromCart(id);
+  };
+
+  // Manejar el vaciado del carrito
+  const handleClear = () => {
+    clearCart();
+  };
+
+  // Manejar la compra
+  const handleCheckout = () => {
+    alert("Compra realizada con éxito!");
+    clearCart(); // Limpiar el carrito después de la compra.
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -11,17 +30,23 @@ const Cart = () => {
         <p>No hay actualmente productos en el carrito.</p>
       ) : (
         <>
-          <ul>
+          <ul className="mb-4">
             {cartItems.map(item => (
-              <li key={item.id} className="flex justify-between py-2">
+              <li key={item.id} className="flex justify-between py-2 border-b">
                 <span>{item.name} (x{item.quantity})</span>
                 <span>${(item.price * item.quantity).toFixed(2)}</span>
+                {/* Botón para eliminar el producto */}
+                <button onClick={() => handleRemove(item.id)} className="text-red-500 hover:text-red-700">Eliminar</button>
               </li>
             ))}
           </ul>
           <div className="mt-4 font-bold">
             Total: ${totalAmount.toFixed(2)}
           </div>
+          {/* Botón para vaciar el carrito */}
+          <button onClick={handleClear} className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Vaciar Carrito</button>
+          {/* Botón para concretar la compra */}
+          <button onClick={handleCheckout} className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Concretar Compra</button>
         </>
       )}
     </div>
