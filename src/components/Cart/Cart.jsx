@@ -43,7 +43,9 @@ const Cart = () => {
         <>
           <ul className="mb-4">
             {cartItems.map(item => (
-              <li key={item.id} className="flex justify-between py-2 border-b">
+              <li key={item.id} className="flex items-center justify-between py-2 border-b">
+                {/* Imagen del producto */}
+                <img src={item.image} alt={item.name} className="h-12 w-12 object-cover mr-4" />
                 <span>{item.name} (x{item.quantity})</span>
                 <span>${(item.price * item.quantity).toFixed(2)}</span>
                 {/* Botón para eliminar el producto */}
