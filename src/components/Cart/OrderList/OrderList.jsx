@@ -1,8 +1,25 @@
-import React from 'react';
-import { getOrders } from '../../../data/orders';
+import React, { useEffect, useState } from 'react';
+import { getOrders } from '../../../data/orders'; // Asegúrate de que la ruta sea correcta
 
 const OrderList = () => {
-  const orders = getOrders(); // Obtener las compras almacenadas
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const fetchedOrders = await getOrders();
+        
+        // Ordenar las órdenes de más reciente a más antigua
+        fetchedOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        setOrders(fetchedOrders);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -15,7 +32,7 @@ const OrderList = () => {
             <li key={order.id} className="border-b py-4">
               <h3 className="font-semibold">Orden ID: {order.id}</h3>
               <p>Fecha: {new Date(order.date).toLocaleString()}</p>
-              <h4 className="mt-2 font-semibold">Productos:</h4>
+              <h4 className="mt-2">Productos:</h4>
               <ul>
                 {order.items.map(item => {
                   const subtotal = (item.price * item.quantity).toFixed(2); // Calcular el subtotal
