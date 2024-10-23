@@ -2,27 +2,35 @@ import React from 'react';
 import { useCart } from '../NavBar/CartWidget/CartWidget';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { addOrder, generateUniqueId } from '../../data/orders';
+import { Link } from 'react-router-dom';
 
 const MySwal = withReactContent(Swal);
 
 const Cart = () => {
   const { cartItems, removeFromCart, clearCart } = useCart();
 
-  // Calcular el total
   const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-  // Manejar la eliminación de un producto
   const handleRemove = (id) => {
     removeFromCart(id);
   };
 
-  // Manejar el vaciado del carrito
   const handleClear = () => {
     clearCart();
   };
 
-  // Manejar la compra
   const handleCheckout = () => {
+    const orderId = generateUniqueId();
+    const orderDetails = {
+      id: orderId,
+      items: cartItems,
+      total: totalAmount,
+      date: new Date().toISOString(),
+    };
+
+    addOrder(orderDetails);
+
     MySwal.fire({
       title: 'Compra realizada con éxito!',
       text: 'Gracias por tu compra.',
@@ -30,13 +38,14 @@ const Cart = () => {
       confirmButtonColor: '#0069d9',
       confirmButtonText: 'Aceptar'
     }).then(() => {
-      clearCart(); // Limpiar el carrito después de la compra.
+      clearCart();
     });
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-2xl font-bold mb-4">Carrito de Compras</h2>
+      
       {cartItems.length === 0 ? (
         <p>No hay actualmente productos en el carrito.</p>
       ) : (
@@ -56,12 +65,14 @@ const Cart = () => {
           <div className="mt-4 font-bold">
             Total: ${totalAmount.toFixed(2)}
           </div>
-          {/* Botón para vaciar el carrito */}
           <button onClick={handleClear} className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Vaciar Carrito</button>
-          {/* Botón para concretar la compra */}
           <button onClick={handleCheckout} className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Concretar Compra</button>
         </>
       )}
+
+      <Link to="/orders" className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+      Ver Compras Realizadas
+      </Link>
     </div>
   );
 };

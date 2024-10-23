@@ -4,7 +4,7 @@ const ItemCount = ({ stock, initial, onAdd, visible, onCountChange }) => {
   const [count, setCount] = useState(initial);
 
   useEffect(() => {
-    onCountChange(count); // Llamar a onCountChange cuando cambia el count
+    onCountChange(count);
   }, [count, onCountChange]);
 
   const increment = () => {
@@ -19,7 +19,7 @@ const ItemCount = ({ stock, initial, onAdd, visible, onCountChange }) => {
     }
   };
 
-  if (!visible) return null; // Ocultar el componente si no es visible
+  if (!visible) return null;
 
   return (
     <div className="flex flex-col items-center">
