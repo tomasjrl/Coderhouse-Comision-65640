@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getOrders } from '../../../data/orders'; // Asegúrate de que la ruta sea correcta
+import { getOrders } from '../data/orders'; // Asegúrate de que la ruta sea correcta
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
