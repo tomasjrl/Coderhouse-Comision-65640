@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
-import products from "../data/products";
+import products from "../data/products.json"; 
 
 const ItemListContainer = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -12,6 +12,7 @@ const ItemListContainer = () => {
     const fetchProducts = () => {
       setLoading(true);
 
+      // Filtra los productos según la categoría
       const filtered = categoryId
         ? products.filter((product) => product.category === categoryId)
         : products;
