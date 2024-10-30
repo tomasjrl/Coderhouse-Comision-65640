@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
-import products from "../data/products"; 
+import { doc, getDoc } from "firebase/firestore"; // Importar funciones necesarias
+import { db } from "../firebase"; // Importar la instancia de Firestore
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState(null);
@@ -9,13 +10,26 @@ const ItemDetailContainer = () => {
   const { itemId } = useParams();
 
   useEffect(() => {
-    const fetchProduct = () => {
-      setLoading(true);
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
 
-      // Buscar el producto por ID
-      const foundProduct = products.find((p) => p.id === itemId) || null;
-      setProduct(foundProduct);
-      setLoading(false);
+        // Referencia al documento específico en Firestore
+        const productRef = doc(db, "productos", itemId);
+        const docSnap = await getDoc(productRef);
+
+        if (docSnap.exists()) {
+          // Si el documento existe, obtener los datos
+          setProduct({ ...docSnap.data(), id: docSnap.id });
+        } else {
+          // Si no se encuentra el producto
+          setProduct(null);
+        }
+      } catch (error) {
+        console.error("Error al obtener el producto:", error);
+      } finally {
+        setLoading(false); // Cambia el estado de carga a false al final
+      }
     };
 
     fetchProduct();
