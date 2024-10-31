@@ -13,7 +13,10 @@ const OrderList = () => {
             setLoading(true); // Inicia la carga
             try {
                 const fetchedOrders = await getOrders();
-                fetchedOrders.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+                
+                // Ordena las órdenes por fecha (más reciente primero)
+                fetchedOrders.sort((a, b) => new Date(b.date) - new Date(a.date)); // Asegúrate de usar 'date'
+                
                 setOrders(fetchedOrders);
             } catch (error) {
                 console.error(error);

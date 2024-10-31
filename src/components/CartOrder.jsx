@@ -3,9 +3,16 @@ import React from 'react';
 
 const CartOrder = ({ order }) => {
   return (
-    <li key={order.id} className="border-b py-4">
+    <>
       <h3 className="font-semibold">Orden ID: {order.id}</h3>
       <p>Fecha: {new Date(order.date).toLocaleString()}</p>
+      
+      {/* Mostrar información del comprador */}
+      <h4 className="mt-2">Información del Comprador:</h4>
+      <p>Nombre: {order.customer.name}</p>
+      <p>Apellido: {order.customer.surname}</p>
+      <p>Email: {order.customer.email}</p>
+
       <h4 className="mt-2">Productos:</h4>
       <ul>
         {order.items.map(item => {
@@ -19,7 +26,7 @@ const CartOrder = ({ order }) => {
         })}
       </ul>
       <p className="font-bold mt-2">Total: ${order.total.toFixed(2)}</p>
-    </li>
+    </>
   );
 };
 
