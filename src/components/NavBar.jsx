@@ -1,12 +1,14 @@
+// NavBar.jsx
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { CartContext } from "./CartWidget";
+import NavLinks from './NavLinks';
 
 const useCart = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new Error('useCart must be used within a CartProvider');
+    throw new Error('useCart solo puede ser utilizado dentro del contexto de un proveedor CartProvider');
   }
   return context;
 };
@@ -21,18 +23,9 @@ const NavBar = () => {
     <nav className="bg-cyan-600 text-white">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          <Link to="/" className="text-2xl font-bold">
-            E-Premier
-          </Link>
-          <div className="hidden md:flex space-x-4">
-            <Link to="/" className="hover:text-blue-200 transition duration-200 ease-in-out">Inicio</Link>
-            <Link to="/about" className="hover:text-blue-200 transition duration-200 ease-in-out">Sobre</Link>
-            <Link to="/category/vestidos" className="hover:text-blue-200 transition duration-200 ease-in-out">Vestidos</Link>
-            <Link to="/category/trajes" className="hover:text-blue-200 transition duration-200 ease-in-out">Trajes</Link>
-            <Link to="/contact" className="hover:text-blue-200 transition duration-200 ease-in-out">Contacto</Link>
-          </div>
+          <Link to="/" className="text-2xl font-bold">E-Premier</Link>
+          <NavLinks isMobile={false} />
           <div className="flex items-center">
-            {/* Haciendo clickeable el icono del carrito */}
             <Link to="/cart" className="relative">
               <ShoppingCart className="h-6 w-6" />
               {cartCount > 0 && (
@@ -42,24 +35,14 @@ const NavBar = () => {
               )}
             </Link>
             <button className="md:hidden ml-4" onClick={toggleMenu}>
-              {isMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
       </div>
       {isMenuOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 text-center sm:px-3">
-            <Link to="/" className="block px-3 py-2 rounded-md text-base font-medium hover:text-blue-200 transition duration-200 ease-in-out">Inicio</Link>
-            <Link to="/about" className="block px-3 py-2 rounded-md text-base font-medium hover:text-blue-200 transition duration-200 ease-in-out">Sobre</Link>
-            <Link to="/category/vestidos" className="block px-3 py-2 rounded-md text-base font-medium hover:text-blue-200 transition duration-200 ease-in-out">Vestidos</Link>
-            <Link to="/category/trajes" className="block px-3 py-2 rounded-md text-base font-medium hover:text-blue-200 transition duration-200 ease-in-out">Trajes</Link>
-            <Link to="/contact" className="block px-3 py-2 rounded-md text-base font-medium hover:text-blue-200 transition duration-200 ease-in-out">Contacto</Link>
-          </div>
+          <NavLinks isMobile={true} />
         </div>
       )}
     </nav>
