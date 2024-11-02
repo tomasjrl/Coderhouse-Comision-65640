@@ -10,7 +10,7 @@ const PaymentProcessor = async ({ cartItems, totalAmount, customer, clearCart })
     html: 'Por favor espera mientras se procesa tu compra.',
     allowOutsideClick: false,
     didOpen: () => {
-      MySwal.showLoading();
+      MySwal.showLoading(); { /* Muestra el círculo de carga */ }
     }
   });
 
@@ -34,7 +34,7 @@ const PaymentProcessor = async ({ cartItems, totalAmount, customer, clearCart })
       confirmButtonColor: "#0069d9",
       confirmButtonText: "Aceptar",
     }).then(() => {
-      clearCart(); // Limpia el carrito después de completar la compra
+      clearCart(); { /* Limpia el carrito después de completar la compra */ }
     });
   } catch (error) {
     console.error("Error al agregar la orden:", error);

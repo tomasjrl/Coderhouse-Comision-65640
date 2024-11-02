@@ -1,4 +1,3 @@
-// ItemOrder.jsx
 import React from "react";
 
 const ItemOrder = ({ order }) => {
@@ -13,7 +12,7 @@ const ItemOrder = ({ order }) => {
       <p>Apellido: {order.customer.surname}</p>
       <p>Email: {order.customer.email}</p>
 
-      <h4 className="mt-2">Productos:</h4>
+      <h4 className="mt-2 font-semibold">Productos:</h4>
       <ul>
         {order.items.map((item) => {
           const subtotal = (item.price * item.quantity).toFixed(2);

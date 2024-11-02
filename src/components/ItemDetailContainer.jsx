@@ -12,23 +12,23 @@ const ItemDetailContainer = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        setLoading(true);
+        setLoading(true); { /* Inicia la carga */ }
 
-        // Referencia al documento específico en Firestore
+        { /* Referencia al documento específico en Firestore */ }
         const productRef = doc(db, "productos", itemId);
         const docSnap = await getDoc(productRef);
 
         if (docSnap.exists()) {
-          // Si el documento existe, obtener los datos
+          { /* Si el documento existe, obtener los datos */ }
           setProduct({ ...docSnap.data(), id: docSnap.id });
         } else {
-          // Si no se encuentra el producto
+          { /* Si no se encuentra el producto */ }
           setProduct(null);
         }
       } catch (error) {
         console.error("Error al obtener el producto:", error);
       } finally {
-        setLoading(false); // Cambia el estado de carga a false al final
+        setLoading(false); { /* Cambia el estado de carga a false al final */ }
       }
     };
 

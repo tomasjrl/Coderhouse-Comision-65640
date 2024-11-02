@@ -12,28 +12,28 @@ const ItemListContainer = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Referencia a la colección de productos
+        { /* Referencia a la colección de productos */ }
         const productsRef = collection(db, "productos");
         
-        // Crear una consulta si hay un categoryId
+        { /* Crear una consulta si hay un categoryId */ }
         const productsQuery = categoryId 
           ? query(productsRef, where("category", "==", categoryId)) 
-          : productsRef; // Si no hay categoryId, obtener todos los productos
+          : productsRef; { /* Si no hay categoryId, obtener todos los productos */ }
 
-        // Obtener los documentos de la consulta
+        { /* Obtener los documentos de la consulta */ }
         const snapshot = await getDocs(productsQuery);
         
-        // Mapea los documentos a un array de objetos
+        { /* Mapea los documentos a un array de objetos */ }
         const productsData = snapshot.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,
         }));
 
-        setFilteredProducts(productsData); // Establecer los productos filtrados
+        setFilteredProducts(productsData); { /* Establecer los productos filtrados */ }
       } catch (error) {
         console.error("Error al obtener los productos:", error);
       } finally {
-        setLoading(false); // Cambia el estado de carga a false al final
+        setLoading(false); { /* Cambia el estado de carga a false al final */ }
       }
     };
 

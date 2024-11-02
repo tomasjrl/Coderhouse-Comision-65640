@@ -1,9 +1,8 @@
-// Cart.jsx
 import React from "react";
 import { useCart } from "./CartWidget";
 import { Link } from "react-router-dom";
-import CheckoutForm from "./CheckoutForm"; // Importa el nuevo componente
-import PaymentProcessor from "./PaymentProcessor"; // Importa el nuevo componente para procesar pagos
+import CheckoutForm from "./CheckoutForm"; 
+import PaymentProcessor from "./PaymentProcessor"; 
 
 const Cart = () => {
   const { cartItems, removeFromCart, clearCart } = useCart();
@@ -58,7 +57,6 @@ const Cart = () => {
           <button onClick={handleClear} className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
             Vaciar Carrito
           </button>
-          {/* Botón para concretar compra */}
           <button 
             onClick={handleCheckoutClick}
             className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
