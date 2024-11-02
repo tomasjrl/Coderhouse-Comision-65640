@@ -1,12 +1,12 @@
-// CartOrder.jsx
-import React from 'react';
+// ItemOrder.jsx
+import React from "react";
 
-const CartOrder = ({ order }) => {
+const ItemOrder = ({ order }) => {
   return (
     <>
       <h3 className="font-semibold">Orden ID: {order.id}</h3>
       <p>Fecha: {new Date(order.date).toLocaleString()}</p>
-      
+
       {/* Mostrar información del comprador */}
       <h4 className="mt-2">Información del Comprador:</h4>
       <p>Nombre: {order.customer.name}</p>
@@ -15,12 +15,19 @@ const CartOrder = ({ order }) => {
 
       <h4 className="mt-2">Productos:</h4>
       <ul>
-        {order.items.map(item => {
+        {order.items.map((item) => {
           const subtotal = (item.price * item.quantity).toFixed(2);
           return (
             <li key={item.id} className="flex items-center py-2 border-b">
-              <img src={item.image} alt={item.name} className="h-12 w-12 object-cover mr-4" />
-              <span className="flex-grow">{item.name} - ${item.price.toFixed(2)} (x{item.quantity}) - Subtotal: ${subtotal}</span>
+              <img
+                src={item.image}
+                alt={item.name}
+                className="h-12 w-12 object-cover mr-4"
+              />
+              <span className="flex-grow">
+                {item.name} - ${item.price.toFixed(2)} (x{item.quantity}) -
+                Subtotal: ${subtotal}
+              </span>
             </li>
           );
         })}
@@ -30,4 +37,4 @@ const CartOrder = ({ order }) => {
   );
 };
 
-export default CartOrder;
+export default ItemOrder;

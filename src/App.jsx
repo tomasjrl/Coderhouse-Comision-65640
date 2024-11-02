@@ -8,7 +8,7 @@ import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import { CartProvider } from "./components/CartWidget";
 import Cart from "./components/Cart";
-import OrderList from "./components/CartOrderList";
+import OrderList from "./components/ItemOrderList";
 import NotFound from "./pages/NotFound";
 
 function App() {

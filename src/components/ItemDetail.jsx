@@ -9,7 +9,7 @@ const MySwal = withReactContent(Swal);
 const useCart = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new Error("useCart must be used within a CartProvider");
+    throw new Error('useCart solo puede ser utilizado dentro del contexto de un proveedor CartProvider');
   }
   return context;
 };
