@@ -1,12 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { db } from '../firebase'; 
+import { collection, getDocs } from 'firebase/firestore';
 
 const NavLinks = ({ isMobile }) => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const productsCollection = collection(db, 'productos'); // Cambia 'productos' si es necesario
+        const productSnapshot = await getDocs(productsCollection);
+        
+        // Extrae las categorías únicas de los productos
+        const uniqueCategories = new Set();
+        productSnapshot.docs.forEach(doc => {
+          const data = doc.data();
+          if (data.category) {
+            uniqueCategories.add(data.category);
+          }
+        });
+
+        // Convierte el Set a un array y establece el estado
+        setCategories(Array.from(uniqueCategories));
+      } catch (error) {
+        console.error("Error al obtener categorías:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   const links = [
     { to: '/', label: 'Inicio' },
     { to: '/about', label: 'Sobre' },
-    { to: '/category/vestidos', label: 'Vestidos' },
-    { to: '/category/trajes', label: 'Trajes' },
+    ...categories.map(category => ({
+      to: `/category/${category}`, // Ruta dinámica para la categoría
+      label: category.charAt(0).toUpperCase() + category.slice(1) // Capitaliza la primera letra
+    })),
     { to: '/contact', label: 'Contacto' },
   ];
 
