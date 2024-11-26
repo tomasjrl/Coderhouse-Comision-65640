@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Item from "./Item";
-import { CartContext } from "./CartWidget";
+import { CartContext } from "../context/cartProvider";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useCart } from "./CartWidget";
+import { useCart } from "../context/cartProvider";
 import { Link } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm"; 
 import PaymentProcessor from "./PaymentProcessor"; 
