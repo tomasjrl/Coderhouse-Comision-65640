@@ -1,7 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
-
-// Crea un contexto para el carrito de compras
-export const CartContext = createContext(undefined);
+// cartProvider.js
+import React, { useState } from 'react';
+import { CartContext } from './cartContext'; // Asegúrate de que la ruta sea correcta
 
 // Componente proveedor del contexto del carrito
 export const CartProvider = ({ children }) => {
@@ -42,15 +41,4 @@ export const CartProvider = ({ children }) => {
       {children}
     </CartContext.Provider>
   );
-};
-
-// Hook personalizado para usar el contexto del carrito
-export const useCart = () => {
-  const context = useContext(CartContext);
-  
-  if (context === undefined) {
-    throw new Error('useCart solo puede ser utilizado dentro del contexto de un proveedor CartProvider');
-  }
-  
-  return context;
 };
