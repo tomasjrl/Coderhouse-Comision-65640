@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
-import { doc, getDoc } from "firebase/firestore"; // Importar funciones necesarias
-import { db } from "../firebase"; // Importar la instancia de Firestore
+import { doc, getDoc } from "firebase/firestore"; 
+import { db } from "../firebase"; 
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState(null);

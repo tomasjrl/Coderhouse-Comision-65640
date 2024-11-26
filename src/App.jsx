@@ -29,7 +29,7 @@ function App() {
               <Route path="/item/:itemId" element={<ItemDetailContainer />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/orders" element={<OrderList />} />{" "}
-              {/* Agregar esta línea */}
+              {/*  */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

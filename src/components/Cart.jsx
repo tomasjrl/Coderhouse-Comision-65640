@@ -1,4 +1,3 @@
-// cart.jsx
 import React from "react";
 import { useCart } from "../context/cartContext"; // Asegúrate de que esta ruta sea correcta
 import { Link } from "react-router-dom";

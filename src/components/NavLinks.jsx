@@ -9,7 +9,7 @@ const NavLinks = ({ isMobile }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const productsCollection = collection(db, 'productos'); // Cambia 'productos' si es necesario
+        const productsCollection = collection(db, 'productos');
         const productSnapshot = await getDocs(productsCollection);
         
         // Extrae las categorías únicas de los productos
@@ -35,8 +35,8 @@ const NavLinks = ({ isMobile }) => {
     { to: '/', label: 'Inicio' },
     { to: '/about', label: 'Sobre' },
     ...categories.map(category => ({
-      to: `/category/${category}`, // Ruta dinámica para la categoría
-      label: category.charAt(0).toUpperCase() + category.slice(1) // Capitaliza la primera letra
+      to: `/category/${category}`, 
+      label: category.charAt(0).toUpperCase() + category.slice(1) 
     })),
     { to: '/contact', label: 'Contacto' },
   ];
