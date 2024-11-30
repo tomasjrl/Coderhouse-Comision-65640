@@ -25,26 +25,31 @@ const CheckoutForm = ({ onConfirm }) => {
         { /* Validación para asegurar que los campos no estén vacíos */ }
         if (!name || !surname || !email) {
           Swal.showValidationMessage("Por favor completa todos los campos");
-          return false; { /* Retorna false para evitar continuar */ }
+          { /* Retorna false para evitar continuar */ }
+          return false;
         }
 
         { /* Validación del correo electrónico */ }
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
           Swal.showValidationMessage("Por favor ingresa un correo electrónico válido");
-          return false; { /* Retorna false para evitar continuar */ }
+          { /* Retorna false para evitar continuar */ }
+          return false;
         }
 
-        return { name, surname, email }; { /* Retorna los valores si son válidos */ }
+        { /* Retorna los valores si son válidos */ }
+        return { name, surname, email };
       }
     }).then(result => {
       if (result.isConfirmed) {
-        onConfirm(result.value); { /* Llama a la función onConfirm con los datos del formulario */ }
+        { /* Llama a la función onConfirm con los datos del formulario */ }
+        onConfirm(result.value);
       }
     });
   };
 
-  return { handleCheckout }; { /* Exporta la función para que pueda ser llamada desde Cart */ }
+  { /* Exporta la función para que pueda ser llamada desde Cart */ }
+  return { handleCheckout };
 };
 
 export default CheckoutForm;

@@ -18,7 +18,7 @@ const ItemListContainer = () => {
         { /* Crear una consulta si hay un categoryId */ }
         const productsQuery = categoryId 
           ? query(productsRef, where("category", "==", categoryId)) 
-          : productsRef; { /* Si no hay categoryId, obtener todos los productos */ }
+          : productsRef;
 
         { /* Obtener los documentos de la consulta */ }
         const snapshot = await getDocs(productsQuery);
