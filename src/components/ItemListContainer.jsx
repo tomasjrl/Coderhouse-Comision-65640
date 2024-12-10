@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -12,33 +12,24 @@ const ItemListContainer = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        {
-        }
         const productsRef = collection(db, "productos");
-        {
-        }
+
         const productsQuery = categoryId
           ? query(productsRef, where("category", "==", categoryId))
           : productsRef;
-        {
-        }
+
         const snapshot = await getDocs(productsQuery);
-        {
-        }
+
         const productsData = snapshot.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,
         }));
 
         setFilteredProducts(productsData);
-        {
-        }
       } catch (error) {
         console.error("Error al obtener los productos:", error);
       } finally {
         setLoading(false);
-        {
-        }
       }
     };
 

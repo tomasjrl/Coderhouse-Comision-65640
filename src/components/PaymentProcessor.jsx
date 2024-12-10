@@ -16,8 +16,6 @@ const PaymentProcessor = async ({
     allowOutsideClick: false,
     didOpen: () => {
       MySwal.showLoading();
-      {
-      }
     },
   });
 
@@ -42,8 +40,6 @@ const PaymentProcessor = async ({
       confirmButtonText: "Aceptar",
     }).then(() => {
       clearCart();
-      {
-      }
     });
   } catch (error) {
     console.error("Error al agregar la orden:", error);

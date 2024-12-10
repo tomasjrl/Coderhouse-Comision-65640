@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getOrders, deleteAllOrders } from "../data/orders";
 import ItemOrder from "./ItemOrder";
 import Swal from "sweetalert2";

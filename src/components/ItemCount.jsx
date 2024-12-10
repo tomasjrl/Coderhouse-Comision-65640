@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const ItemCount = ({ stock, initial, onAdd, visible, onCountChange }) => {
   const [count, setCount] = useState(initial);
@@ -48,6 +49,14 @@ const ItemCount = ({ stock, initial, onAdd, visible, onCountChange }) => {
       </button>
     </div>
   );
+};
+
+ItemCount.propTypes = {
+  stock: PropTypes.number.isRequired,
+  initial: PropTypes.number.isRequired,
+  onAdd: PropTypes.func.isRequired,
+  visible: PropTypes.bool.isRequired,
+  onCountChange: PropTypes.func.isRequired,
 };
 
 export default ItemCount;

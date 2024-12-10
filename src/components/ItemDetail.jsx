@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import Item from "./Item";
 import { CartContext } from "../context/cartContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import PropTypes from "prop-types";
 
 const MySwal = withReactContent(Swal);
 
@@ -19,7 +20,6 @@ const useCart = () => {
 const ItemDetail = ({ product }) => {
   const { addToCart } = useCart();
   const [isCountVisible, setIsCountVisible] = useState(true);
-  const [selectedCount, setSelectedCount] = useState(1);
 
   const handleAddToCart = (count) => {
     addToCart(product, count);
@@ -34,8 +34,7 @@ const ItemDetail = ({ product }) => {
     });
   };
 
-  const handleCountChange = (count) => {
-    setSelectedCount(count);
+  const handleCountChange = () => {
   };
 
   return (
@@ -46,6 +45,12 @@ const ItemDetail = ({ product }) => {
       handleCountChange={handleCountChange}
     />
   );
+};
+
+ItemDetail.propTypes = {
+  product: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default ItemDetail;

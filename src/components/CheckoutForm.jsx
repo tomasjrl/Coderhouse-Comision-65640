@@ -22,42 +22,30 @@ const CheckoutForm = ({ onConfirm }) => {
         const surname = document.getElementById("surname").value;
         const email = document.getElementById("email").value;
 
-        {
-        }
         if (!name || !surname || !email) {
           Swal.showValidationMessage("Por favor completa todos los campos");
-          {
-          }
+
           return false;
         }
 
-        {
-        }
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
           Swal.showValidationMessage(
             "Por favor ingresa un correo electrónico válido"
           );
-          {
-          }
+
           return false;
         }
 
-        {
-        }
         return { name, surname, email };
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        {
-        }
         onConfirm(result.value);
       }
     });
   };
 
-  {
-  }
   return { handleCheckout };
 };
 

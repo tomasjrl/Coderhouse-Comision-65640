@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import PropTypes from "prop-types";
 
 const NavLinks = ({ isMobile }) => {
   const [categories, setCategories] = useState([]);
@@ -59,6 +60,10 @@ const NavLinks = ({ isMobile }) => {
       ))}
     </div>
   );
+};
+
+NavLinks.propTypes = {
+  isMobile: PropTypes.bool.isRequired,
 };
 
 export default NavLinks;

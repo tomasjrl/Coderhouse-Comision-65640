@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import { doc, getDoc } from "firebase/firestore";
@@ -13,29 +13,19 @@ const ItemDetailContainer = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        {
-        }
 
-        {
-        }
         const productRef = doc(db, "productos", itemId);
         const docSnap = await getDoc(productRef);
 
         if (docSnap.exists()) {
-          {
-          }
           setProduct({ ...docSnap.data(), id: docSnap.id });
         } else {
-          {
-          }
           setProduct(null);
         }
       } catch (error) {
         console.error("Error al obtener el producto:", error);
       } finally {
         setLoading(false);
-        {
-        }
       }
     };
 

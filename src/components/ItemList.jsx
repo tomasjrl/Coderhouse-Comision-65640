@@ -1,5 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Product = ({ id, name, price, image }) => {
   return (
@@ -19,6 +19,13 @@ const Product = ({ id, name, price, image }) => {
   );
 };
 
+Product.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+};
+
 const ItemList = ({ products }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -27,13 +34,23 @@ const ItemList = ({ products }) => {
           key={product.id}
           id={product.id}
           name={product.name}
-          category={product.category}
           price={product.price}
           image={product.image}
         />
       ))}
     </div>
   );
+};
+
+ItemList.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default ItemList;

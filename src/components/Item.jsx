@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import ItemCount from "./ItemCount";
 
 const Item = ({
@@ -28,7 +28,6 @@ const Item = ({
           <p className="mt-2 text-gray-700">
             Stock disponible: {product.stock}
           </p>
-          {}
           <p className="mt-2 text-gray-600">{product.description}</p>
 
           <div className="mt-4">
@@ -44,6 +43,20 @@ const Item = ({
       </div>
     </div>
   );
+};
+
+Item.propTypes = {
+  product: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    stock: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+  isCountVisible: PropTypes.bool.isRequired,
+  handleAddToCart: PropTypes.func.isRequired,
+  handleCountChange: PropTypes.func.isRequired,
 };
 
 export default Item;

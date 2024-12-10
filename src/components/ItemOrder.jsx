@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 const ItemOrder = ({ order }) => {
   return (
@@ -6,7 +6,6 @@ const ItemOrder = ({ order }) => {
       <h3 className="font-semibold">Orden ID: {order.id}</h3>
       <p>Fecha: {new Date(order.date).toLocaleString()}</p>
 
-      {}
       <h4 className="mt-2">Información del Comprador: </h4>
       <p>Nombre: {order.customer.name}</p>
       <p>Apellido: {order.customer.surname}</p>
@@ -34,6 +33,28 @@ const ItemOrder = ({ order }) => {
       <p className="font-bold mt-2">Total: ${order.total.toFixed(2)}</p>
     </>
   );
+};
+
+ItemOrder.propTypes = {
+  order: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
+    customer: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      surname: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+    }).isRequired,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        quantity: PropTypes.number.isRequired,
+        image: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    total: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default ItemOrder;
