@@ -2,12 +2,14 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { CartContext } from "../context/cartContext";
-import NavLinks from './NavLinks';
+import NavLinks from "./NavLinks";
 
 const useCart = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new Error('useCart solo puede ser utilizado dentro del contexto de un proveedor CartProvider');
+    throw new Error(
+      "useCart solo puede ser utilizado dentro del contexto de un proveedor CartProvider"
+    );
   }
   return context;
 };
@@ -22,7 +24,9 @@ const NavBar = () => {
     <nav className="bg-cyan-600 text-white">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          <Link to="/" className="text-2xl font-bold">E-Premier</Link>
+          <Link to="/" className="text-2xl font-bold">
+            E-Premier
+          </Link>
           <NavLinks isMobile={false} />
           <div className="flex items-center">
             <Link to="/cart" className="relative">
@@ -34,7 +38,11 @@ const NavBar = () => {
               )}
             </Link>
             <button className="md:hidden ml-4" onClick={toggleMenu}>
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>

@@ -1,12 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Product = ({
-  id,
-  name,
-  price,
-  image
-}) => {
+const Product = ({ id, name, price, image }) => {
   return (
     <div key={id} className="bg-white rounded-lg shadow-md overflow-hidden">
       <img src={image} alt={name} className="w-full h-48 object-cover" />
@@ -28,7 +23,7 @@ const ItemList = ({ products }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {products.map((product) => (
-        <Product 
+        <Product
           key={product.id}
           id={product.id}
           name={product.name}

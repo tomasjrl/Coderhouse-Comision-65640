@@ -1,7 +1,12 @@
 import React from "react";
 import ItemCount from "./ItemCount";
 
-const Item = ({ product, isCountVisible, handleAddToCart, handleCountChange }) => {
+const Item = ({
+  product,
+  isCountVisible,
+  handleAddToCart,
+  handleCountChange,
+}) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       <div className="md:flex">
@@ -20,9 +25,10 @@ const Item = ({ product, isCountVisible, handleAddToCart, handleCountChange }) =
             {product.name}
           </h2>
           <p className="mt-2 text-gray-500">${product.price.toFixed(2)}</p>
-          <p className="mt-2 text-gray-700">Stock disponible: {product.stock}</p>
-          
-          {/* Mostrar la descripción del producto */}
+          <p className="mt-2 text-gray-700">
+            Stock disponible: {product.stock}
+          </p>
+          {}
           <p className="mt-2 text-gray-600">{product.description}</p>
 
           <div className="mt-4">

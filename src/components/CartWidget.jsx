@@ -1,5 +1,5 @@
-import React from 'react';
-import { useCart } from '../context/cartProvider';
+import React from "react";
+import { useCart } from "../context/cartProvider";
 
 const CartWidget = () => {
   const { cartCount } = useCart();

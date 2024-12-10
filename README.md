@@ -30,21 +30,25 @@ Este proyecto es un e-commerce desarrollado como entrega final para el curso de 
 ## Comandos para Ejecutar la Aplicación
 
 1. Clonar el repositorio:
+
 ```bash
 git clone [URL del repositorio]
 ```
 
 2. Instalar las dependencias:
+
 ```bash
 npm install
 ```
 
 3. Iniciar el servidor de desarrollo:
+
 ```bash
 npm run dev
 ```
 
 4. Para construir la aplicación para producción:
+
 ```bash
 npm run build
 ```

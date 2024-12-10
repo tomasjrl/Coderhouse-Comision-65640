@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { db } from '../firebase'; 
-import { collection, getDocs } from 'firebase/firestore';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 const NavLinks = ({ isMobile }) => {
   const [categories, setCategories] = useState([]);
@@ -9,19 +9,16 @@ const NavLinks = ({ isMobile }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const productsCollection = collection(db, 'productos');
+        const productsCollection = collection(db, "productos");
         const productSnapshot = await getDocs(productsCollection);
-        
-        // Extrae las categorías únicas de los productos
         const uniqueCategories = new Set();
-        productSnapshot.docs.forEach(doc => {
+        productSnapshot.docs.forEach((doc) => {
           const data = doc.data();
           if (data.category) {
             uniqueCategories.add(data.category);
           }
         });
 
-        // Convierte el Set a un array y establece el estado
         setCategories(Array.from(uniqueCategories));
       } catch (error) {
         console.error("Error al obtener categorías:", error);
@@ -32,22 +29,30 @@ const NavLinks = ({ isMobile }) => {
   }, []);
 
   const links = [
-    { to: '/', label: 'Inicio' },
-    { to: '/about', label: 'Sobre' },
-    ...categories.map(category => ({
-      to: `/category/${category}`, 
-      label: category.charAt(0).toUpperCase() + category.slice(1) 
+    { to: "/", label: "Inicio" },
+    { to: "/about", label: "Sobre" },
+    ...categories.map((category) => ({
+      to: `/category/${category}`,
+      label: category.charAt(0).toUpperCase() + category.slice(1),
     })),
-    { to: '/contact', label: 'Contacto' },
+    { to: "/contact", label: "Contacto" },
   ];
 
   return (
-    <div className={isMobile ? "px-2 pt-2 pb-3 space-y-1 text-center sm:px-3" : "hidden md:flex space-x-4"}>
+    <div
+      className={
+        isMobile
+          ? "px-2 pt-2 pb-3 space-y-1 text-center sm:px-3"
+          : "hidden md:flex space-x-4"
+      }
+    >
       {links.map((link) => (
-        <Link 
-          key={link.to} 
-          to={link.to} 
-          className={`block ${isMobile ? "px-3 py-2 rounded-md text-base font-medium" : ""} hover:text-blue-200 transition duration-200 ease-in-out`}
+        <Link
+          key={link.to}
+          to={link.to}
+          className={`block ${
+            isMobile ? "px-3 py-2 rounded-md text-base font-medium" : ""
+          } hover:text-blue-200 transition duration-200 ease-in-out`}
         >
           {link.label}
         </Link>

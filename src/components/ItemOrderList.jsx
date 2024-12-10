@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getOrders, deleteAllOrders } from "../data/orders"; 
+import { getOrders, deleteAllOrders } from "../data/orders";
 import ItemOrder from "./ItemOrder";
 import Swal from "sweetalert2";
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -30,7 +30,7 @@ const OrderList = () => {
       text: "Esta acción eliminará todo el historial de compras y no se puede deshacer.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#0069d9", 
+      confirmButtonColor: "#0069d9",
       cancelButtonColor: "#d33",
       confirmButtonText: "Sí, eliminar todo",
       cancelButtonText: "Cancelar",
@@ -49,7 +49,7 @@ const OrderList = () => {
       try {
         await deleteAllOrders();
         setOrders([]);
-        loadingSwal.close(); 
+        loadingSwal.close();
 
         Swal.fire({
           title: "Eliminado!",
@@ -59,13 +59,13 @@ const OrderList = () => {
         });
       } catch (error) {
         console.error("Error al eliminar todas las órdenes: ", error);
-        loadingSwal.close(); 
+        loadingSwal.close();
 
         Swal.fire({
           title: "Error",
           text: "Hubo un problema al eliminar el historial.",
           icon: "error",
-          confirmButtonColor: "#0069d9", 
+          confirmButtonColor: "#0069d9",
         });
       }
     }
@@ -93,7 +93,10 @@ const OrderList = () => {
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {orders.map((order) => (
-            <li key={order.id} className="border-b border-gray-300 bg-white shadow-md rounded-lg p-4 transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+            <li
+              key={order.id}
+              className="border-b border-gray-300 bg-white shadow-md rounded-lg p-4 transition-transform transform hover:-translate-y-1 hover:shadow-lg"
+            >
               <ItemOrder order={order} />
             </li>
           ))}

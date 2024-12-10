@@ -14,41 +14,50 @@ const CheckoutForm = ({ onConfirm }) => {
       `,
       focusConfirm: false,
       showCancelButton: true,
-      confirmButtonColor: '#0069d9',
-      confirmButtonText: 'Enviar',
-      cancelButtonText: 'Cancelar',
+      confirmButtonColor: "#0069d9",
+      confirmButtonText: "Enviar",
+      cancelButtonText: "Cancelar",
       preConfirm: () => {
         const name = document.getElementById("name").value;
         const surname = document.getElementById("surname").value;
         const email = document.getElementById("email").value;
 
-        { /* Validación para asegurar que los campos no estén vacíos */ }
+        {
+        }
         if (!name || !surname || !email) {
           Swal.showValidationMessage("Por favor completa todos los campos");
-          { /* Retorna false para evitar continuar */ }
+          {
+          }
           return false;
         }
 
-        { /* Validación del correo electrónico */ }
+        {
+        }
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
-          Swal.showValidationMessage("Por favor ingresa un correo electrónico válido");
-          { /* Retorna false para evitar continuar */ }
+          Swal.showValidationMessage(
+            "Por favor ingresa un correo electrónico válido"
+          );
+          {
+          }
           return false;
         }
 
-        { /* Retorna los valores si son válidos */ }
+        {
+        }
         return { name, surname, email };
-      }
-    }).then(result => {
+      },
+    }).then((result) => {
       if (result.isConfirmed) {
-        { /* Llama a la función onConfirm con los datos del formulario */ }
+        {
+        }
         onConfirm(result.value);
       }
     });
   };
 
-  { /* Exporta la función para que pueda ser llamada desde Cart */ }
+  {
+  }
   return { handleCheckout };
 };
 

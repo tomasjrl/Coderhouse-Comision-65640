@@ -38,7 +38,8 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-4 text-sm">
-          &copy; {new Date().getFullYear()} E-Premier. Todos los derechos reservados.
+          &copy; {new Date().getFullYear()} E-Premier. Todos los derechos
+          reservados.
         </div>
       </div>
     </footer>
